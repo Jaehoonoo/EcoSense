@@ -1,4 +1,14 @@
+'use client';
+
+import axios from "axios";
 import styles from '@/app/page.module.css';
+
+const createUserData = async (userId) => {
+  const response = await axios.post("/api/createData", {
+    userId: userId
+  })
+
+}
 
 export default function Home() {
   return (
@@ -34,6 +44,9 @@ export default function Home() {
 
 
       
+      <button onClick={() => createUserData('jhoon')}>
+        create profile
+      </button>
     </div>
   );
 }
