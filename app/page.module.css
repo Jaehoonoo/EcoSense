@@ -1,0 +1,157 @@
+
+
+.header {
+    background-color: #364a42;
+    padding: 20px;
+    color: white;
+    position: absolute;
+    top: 0;
+    width: 100vw;
+  }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo{
+    display:flex;
+    align-items: center;
+  }
+
+  .logoImage{
+    width: 60px;
+    height: 60px;
+    object-fit:contain;
+    border-radius: 5px;
+    margin-right: 1rem;
+    
+  }
+  .logo a {
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+  }
+  .navLink {
+    display: flex;
+    list-style: none;
+  }
+  .navLink li {
+    margin: 0 15px;
+  }
+  .navLink a {
+    color: white;
+    text-decoration: none;
+  }
+
+  /*Authentication buttons*/
+  .authButtons{
+    margin-left: auto;
+  }
+
+  .authButtons a{
+    margin-left: 15px;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3 ease;
+  }
+
+  .loginButton {
+    background-color: transparent;
+    border: 2px solid #38A3A5;
+    color: white;
+  }
+
+  .loginButton:hover{
+    background-color: #38A3A5;
+    color:white;
+  }
+
+  .registerButton {
+    background-color: transparent;
+    border: 2px solid #38A3A5;
+    color: white;
+  }
+
+  .registerButton:hover{
+    background-color: #38A3A5;
+    color:white;
+  }
+
+  /* Styles for the hero section */
+  .hero {
+    background-image: url('/landing.jpg');
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: black;
+    background-size: cover;
+    background-position: center;
+    
+    
+  }
+
+  
+  
+  .heroContent {
+    max-width: 600px;
+    opacity: 1;
+    
+    background-color: #C0D9AF;
+    
+    padding: 2rem;
+    border-radius: 40px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    
+  }
+
+  @keyframes fadeInSlamDown{
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    50%{
+        opacity: 0.5;
+        transform: translateY(0px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(10px);
+    }
+
+  }
+
+
+  .hero h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    transform: translateY(-50px);
+    animation: fadeInSlamDown 4s ease-out forwards;
+  }
+  .hero p {
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+    transform: translateY(-50px);
+    animation: fadeInSlamDown 3s ease-out forwards;
+  }
+  .ctaButton {
+    padding: 10px 20px;
+    background-color: #38A3A5;
+    color: white;
+    text-decoration: none;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    font-size: 1rem;
+    
+    animation: fadeInSlamDown 2s ease-out forwards;
+  }
+  .ctaButton:hover {
+    background-color: #2b8182;
+    
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  }
