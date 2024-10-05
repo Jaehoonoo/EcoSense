@@ -5,6 +5,37 @@ import axios from "axios";
 import styles from '@/app/page.module.css';
 import Image from 'next/image';
 
+
+export default function Home() {
+  const [userId, setUserId] = useState("alden");
+
+  const [numDevices, setNumDevices] = useState(0);
+  const [totalWatts, setTotalWatts] = useState(0);
+  const [budget, setBudget] = useState(0);
+  const [threshold, setThreshold] = useState(0);
+  const [schedule, setSchedule] = useState([]);
+
+  useEffect(() => {
+    getUserData(userId)
+  }, [userId])
+
+  const getUserData = async (userId) => {
+    try{
+      const response = await axios.get("/api/userData", {
+        params: { user: userId }
+      })
+
+      setNumDevices(response.data.data.devices)
+    } catch (error) {
+      console.error("Error getting user data: ", error);
+      return {
+        success: false,
+        message: "Failed to get user data",
+        status: 500
+      };
+    }
+  }
+
   const createUserData = async (userId) => {
     try{
       const response = await axios.post("/api/createData", {
@@ -20,38 +51,38 @@ import Image from 'next/image';
     }
   }
   
-    const updateUserdata = async (userId, devices, totalWatts, budget, threshold, schedule) => {
-      try {
-        const response = await axios.post("/api/updateData", {
-          userId,
-          devices,
-          totalWatts,
-          budget,
-          threshold,
-          schedule
-        })
+  const updateUserdata = async (userId, devices, totalWatts, budget, threshold, schedule) => {
+    try {
+      const response = await axios.post("/api/updateData", {
+        userId,
+        devices,
+        totalWatts,
+        budget,
+        threshold,
+        schedule
+      })
 
-      } catch (error) {
-        console.error("Error updating user data: ", error);
-        return {
-          success: false,
-          message: "Failed to update user data",
-          status: 500
-        };
-      }
+    } catch (error) {
+      console.error("Error updating user data: ", error);
+      return {
+        success: false,
+        message: "Failed to update user data",
+        status: 500
+      };
     }
+  }
 
-    const addDevice = async () => {
-      // Use the functional form to get the latest value
-      setNumDevices((prevNumDevices) => {
-        const newNumDevices = prevNumDevices + 1; // Increment the number of devices
-  
-        // Update user data with the incremented value
-        updateUserdata(userId, newNumDevices, totalWatts, budget, threshold, schedule);
-  
-        return newNumDevices; // Return the new value to update the state
-      });
-    }
+  const addDevice = async () => {
+    // Use the functional form to get the latest value
+    setNumDevices((prevNumDevices) => {
+      const newNumDevices = prevNumDevices + 1; // Increment the number of devices
+
+      // Update user data with the incremented value
+      updateUserdata(userId, newNumDevices, totalWatts, budget, threshold, schedule);
+
+      return newNumDevices; // Return the new value to update the state
+    });
+  }
 
   return (
     <div>
@@ -59,7 +90,7 @@ import Image from 'next/image';
       <header className={styles.header}>
         <nav className={styles.nav}>
         <div className={styles.logo}>
-            <Image src="/logo.png" alt="EcoSense Logo" className={styles.logoImage} />
+            <Image width={50} height={50} src="/logo.png" alt="EcoSense Logo" className={styles.logoImage} />
             <a href="#" className={styles.logoText}>EcoSense</a>
           </div>
           <ul className={styles.navLink}>
@@ -83,7 +114,7 @@ import Image from 'next/image';
           <a href="#cta" className={styles.ctaButton}>Get Started!</a>
         </div>
       </section>
-      
+
       <button onClick={() => createUserData(userId)}>
         create profile
       </button>
@@ -96,4 +127,4 @@ import Image from 'next/image';
       </button>
     </div>
   );
-
+};
