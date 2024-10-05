@@ -2,6 +2,7 @@
 
 import axios from "axios";
 import styles from '@/app/page.module.css';
+import Image from 'next/image';
 
 const createUserData = async (userId) => {
   const response = await axios.post("/api/createData", {
@@ -17,7 +18,7 @@ export default function Home() {
       <header className={styles.header}>
         <nav className={styles.nav}>
         <div className={styles.logo}>
-            <img src="/logo.png" alt="EcoSense Logo" className={styles.logoImage} />
+            <Image src="/logo.png" alt="EcoSense Logo" className={styles.logoImage} />
             <a href="#" className={styles.logoText}>EcoSense</a>
           </div>
           <ul className={styles.navLink}>
