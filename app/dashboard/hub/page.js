@@ -3,6 +3,7 @@
 import styles from "./page.module.css";
 import { useState } from "react";
 import axios from "axios";
+import Bills from './Bills'; // Adjust the path as needed
 
 export default function Hub() {
   const [deviceStatus, setDeviceStatus] = useState("Off");
@@ -36,6 +37,11 @@ export default function Hub() {
 
 	return (
 		<div className={styles.container}>
+      <div>
+        <h1>Energy Bill Calculator</h1>
+        <Bills />
+      </div>
+
 			<div className={styles.top}>
 
 				<div className={styles.assistantsContainer}>
