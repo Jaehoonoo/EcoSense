@@ -53,13 +53,6 @@ export default function Dashboard(){
             
                 
         </div>
-      <div className={styles.imageSection}>
-                <img
-                    src="/assets/graph.jpg"
-                    
-                    className={styles.graphImage}
-                />
-            </div>
 
     </div>
 

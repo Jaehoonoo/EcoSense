@@ -24,6 +24,11 @@ const menuItems = [
                 path: "/dashboard/hub",
                 icon: <VscGlobe />
             },
+            {
+                title: "Bills",
+                path: "/dashboard/bills",
+                icon: <GiCardPick />
+            },
             
         ]
     },
