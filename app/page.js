@@ -1,18 +1,90 @@
 'use client';
 
+import { useEffect, useState } from "react";
 import axios from "axios";
 import styles from '@/app/page.module.css';
 import Head from 'next/head';
 import Image from 'next/image';
 
-const createUserData = async (userId) => {
-  const response = await axios.post("/api/createData", {
-    userId: userId
-  })
-
-}
 
 export default function Home() {
+  const [userId, setUserId] = useState("alden");
+
+  const [numDevices, setNumDevices] = useState(0);
+  const [totalWatts, setTotalWatts] = useState(0);
+  const [budget, setBudget] = useState(0);
+  const [threshold, setThreshold] = useState(0);
+  const [schedule, setSchedule] = useState([]);
+
+  useEffect(() => {
+    getUserData(userId)
+  }, [userId])
+
+  const getUserData = async (userId) => {
+    try{
+      const response = await axios.get("/api/userData", {
+        params: { user: userId }
+      })
+
+      setNumDevices(response.data.data.devices)
+    } catch (error) {
+      console.error("Error getting user data: ", error);
+      return {
+        success: false,
+        message: "Failed to get user data",
+        status: 500
+      };
+    }
+  }
+
+  const createUserData = async (userId) => {
+    try{
+      const response = await axios.post("/api/createData", {
+        userId: userId
+      })
+    } catch (error) {
+      console.error("Error creating user data: ", error);
+      return {
+        success: false,
+        message: "Failed to create user data",
+        status: 500
+      };
+    }
+  }
+  
+  const updateUserdata = async (userId, devices, totalWatts, budget, threshold, schedule) => {
+    try {
+      const response = await axios.post("/api/updateData", {
+        userId,
+        devices,
+        totalWatts,
+        budget,
+        threshold,
+        schedule
+      })
+
+    } catch (error) {
+      console.error("Error updating user data: ", error);
+      return {
+        success: false,
+        message: "Failed to update user data",
+        status: 500
+      };
+    }
+  }
+
+  const addDevice = async () => {
+    // Use the functional form to get the latest value
+    setNumDevices((prevNumDevices) => {
+      const newNumDevices = prevNumDevices + 1; // Increment the number of devices
+
+      // Update user data with the incremented value
+      updateUserdata(userId, newNumDevices, totalWatts, budget, threshold, schedule);
+
+      return newNumDevices; // Return the new value to update the state
+    });
+  }
+
   return (
 
     
@@ -30,7 +102,7 @@ export default function Home() {
         <nav className={styles.nav}>
         <div className={styles.logo}>
             <Image width={50} height={50} src="/logo.png" alt="EcoSense Logo" className={styles.logoImage} />
-            <a href="#home" className={styles.logoText}>EcoSense</a>
+            <a href="/" className={styles.logoText}>EcoSense</a>
           </div>
           <ul className={styles.navLink}>
             
@@ -54,11 +126,16 @@ export default function Home() {
         </div>
       </section>
 
-
-      
-      <button onClick={() => createUserData('jhoon')}>
+      <button onClick={() => createUserData(userId)}>
         create profile
+      </button>
+
+      <div>
+        <h4>Number of devices: {numDevices}</h4>
+      </div>
+      <button onClick={addDevice}>
+        Add device
       </button>
     </div>
   );
-}
+};
