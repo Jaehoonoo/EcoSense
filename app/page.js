@@ -148,7 +148,7 @@ export default function Home() {
       <header className={styles.header}>
         <nav className={styles.nav}>
         <div className={styles.logo}>
-            <Image width={50} height={50} src="/logo.png" alt="EcoSense Logo" className={styles.logoImage} />
+            <Image width={50} height={50} src="/assets/logo.png" alt="EcoSense Logo" className={styles.logoImage} />
             <a href="/" className={styles.logoText}>EcoSense</a>
           </div>
 
