@@ -1,0 +1,43 @@
+.container {
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: -3px 3px 5px rgb(40, 40, 40);
+    margin-bottom: 12px;
+    background-color: #57cc99;
+    color: #364a42;
+    
+  }
+  
+  .menu {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    
+  }
+  
+  .title {
+    font-weight: bold;
+    font-size: 1.4rem;
+    text-transform: capitalize;
+    
+  }
+  
+  .menuIcon {
+    padding: 10px;
+    user-select: none;
+  }
+  
+  .menuIcon:hover {
+    cursor: pointer;
+    background-color: lightgray;
+    border-radius: 10px;
+  }
+  
+  @media screen and (min-width: 1200px) {
+    .menuIcon {
+      display: none;
+    }
+  }
