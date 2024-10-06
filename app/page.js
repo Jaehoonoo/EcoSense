@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import styles from '@/app/page.module.css';
+import Head from 'next/head';
 import Image from 'next/image';
 
 
@@ -85,13 +86,23 @@ export default function Home() {
   }
 
   return (
+
+    
     <div>
+
+      <Head>
+        {/* Preconnect to Google Fonts */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet" />
+      </Head>
+
       {/*Header Section*/}
       <header className={styles.header}>
         <nav className={styles.nav}>
         <div className={styles.logo}>
             <Image width={50} height={50} src="/logo.png" alt="EcoSense Logo" className={styles.logoImage} />
-            <a href="#" className={styles.logoText}>EcoSense</a>
+            <a href="/" className={styles.logoText}>EcoSense</a>
           </div>
           <ul className={styles.navLink}>
             
@@ -110,7 +121,7 @@ export default function Home() {
       <section className={styles.hero}>
         <div className={styles.heroContent}>
           <h1>Welcome to EcoSense</h1>
-          <p>Discover the best cost-efficient solutions for your home</p>
+          <p>Discover the best cost-efficient solutions for your home today!</p>
           <a href="#cta" className={styles.ctaButton}>Get Started!</a>
         </div>
       </section>
