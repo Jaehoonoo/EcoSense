@@ -1,0 +1,95 @@
+/* Container Styles */
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #f0f4f8; /* Light background color */
+  padding: 30px; /* Increased padding for more spaciousness */
+  border-radius: 16px; /* Rounded corners for the container */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Flexbox Styles for Sections */
+.assistants,
+.groups {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px; /* Increased space between each section */
+  padding: 10px;
+}
+
+/* Scrollable Container for Devices and Smart Plugs */
+.scrollable-container {
+  display: flex; /* Row layout for items */
+  overflow-x: auto; /* Enable horizontal scrolling */
+  padding: 10px 0; /* Padding for the scrolling area */
+  scrollbar-width: thin; /* For Firefox: thin scrollbar */
+}
+
+/* Scrollbar Customization (WebKit Browsers) */
+.scrollable-container::-webkit-scrollbar {
+  height: 8px; /* Height of the scrollbar */
+}
+
+.scrollable-container::-webkit-scrollbar-thumb {
+  background-color: #56CB99; /* Scrollbar color */
+  border-radius: 10px; /* Rounded corners for scrollbar */
+}
+
+.scrollable-container::-webkit-scrollbar-track {
+  background-color: #f0f4f8; /* Track color */
+}
+
+/* Box Styles */
+.box {
+  background-color: #56CB99; /* Main box color */
+  border-radius: 12px; /* Rounded corners */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Softer shadow */
+  padding: 20px; /* Increased padding for more internal space */
+  min-width: 200px; /* Minimum width for each box */
+  color: #fff; /* White text for contrast */
+  transition: all 0.3s ease; /* Smooth transitions */
+  cursor: pointer;
+  margin-right: 20px; /* Space between the boxes horizontally */
+}
+
+/* Remove margin from last box */
+.scrollable-container .box:last-child {
+  margin-right: 0; /* Remove right margin for the last box */
+}
+
+/* Hover Effect for Boxes */
+.box:hover {
+  background-color: #4db78f; /* Darker shade for hover effect */
+  transform: translateY(-3px); /* Slight lift effect */
+}
+
+/* Optional: Text Styles Inside Boxes */
+.box h2 {
+  margin: 0 0 10px; /* Margin for heading */
+  font-size: 1.6rem; /* Increased font size for heading */
+  font-weight: 700; /* Bold font weight for emphasis */
+}
+
+.box p {
+  margin: 0; /* Reset margin for paragraph */
+  font-size: 1.1rem; /* Slightly larger font size for paragraph */
+  line-height: 1.6; /* Improve readability */
+}
+
+/* Add Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px; /* Less padding on smaller screens */
+  }
+
+  .scrollable-container {
+    gap: 10px; /* Reduced gap on smaller screens */
+  }
+
+  .box {
+    min-width: 150px; /* Smaller minimum width for mobile */
+    margin-right: 10px; /* Less space between boxes on mobile */
+  }
+}

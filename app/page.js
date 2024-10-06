@@ -120,14 +120,6 @@ export default function Home() {
       })
 
       
-      console.log(response.data); // Output the message from the backend
-
-      // if (response.data.success) {
-      //   // Set the AI-generated message from the backend
-      //   setMessage(response.data.message);
-      // } else {
-      //   setMessage("No suggestion available");
-      // }
 
     } catch (error) {
       console.error("Error toggling power: ", error);
@@ -137,39 +129,6 @@ export default function Home() {
         status: 500
       };  
     }
-  }
-
-  const checkPattern = async () => {
-    const newStatus = deviceStatus === "On" ? "Off" : "On";
-    setDeviceStatus(newStatus);
-
-    try {
-      const response = await axios.get("/api/checkPattern", {
-        deviceStatus: newStatus,
-        appliance: "lights", // change to dependent appliances
-        timestamp: date
-      })
-
-      if (response.data.success) {
-        // Set the AI-generated message from the backend
-        setMessage(response.data.message);
-      } else {
-        setMessage("No suggestion available");
-      }
-
-      console.log(message);
-    } catch (error) {
-      console.error("Error checking pattern: ", error);
-      return {
-        success: false,
-        message: "Failed to check pattern",
-        status: 500
-      };
-    }
-  }
-  const handleVector = () => {
-    toggleDevice();
-    checkPattern();
   }
 
 
