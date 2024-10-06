@@ -18,6 +18,7 @@
   .logo{
     display:flex;
     align-items: center;
+    
   }
 
   .logoImage{
@@ -71,13 +72,14 @@
   }
 
   .registerButton {
-    background-color: transparent;
+    background-color: #38A3A5;
     border: 2px solid #38A3A5;
     color: white;
   }
 
   .registerButton:hover{
-    background-color: #38A3A5;
+    background-color: #2d8284;
+    border: 2px solid #2d8284;
     color:white;
   }
 
@@ -89,7 +91,8 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: black;
+    color: #2a4b44;
+    
     background-size: cover;
     background-position: center;
     
