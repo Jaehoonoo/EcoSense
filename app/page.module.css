@@ -1,6 +1,6 @@
 
 
-.header {
+  .header {
     background-color: #364a42;
     padding: 20px;
     color: white;
@@ -8,6 +8,7 @@
     top: 0;
     width: 100vw;
   }
+
   .nav {
     display: flex;
     justify-content: space-between;
@@ -84,7 +85,7 @@
 
   /* Styles for the hero section */
   .hero {
-    background-image: url('/landing.jpg');
+    background-image: url('/assets/landing.jpg');
     height: 100vh;
     display: flex;
     align-items: center;
@@ -143,9 +144,9 @@
   }
   .ctaButton {
     padding: 10px 20px;
+    border: none;
     background-color: #38A3A5;
     color: white;
-    text-decoration: none;
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
     border-bottom-left-radius: 30px;
@@ -155,6 +156,6 @@
   }
   .ctaButton:hover {
     background-color: #2b8182;
-    
+    cursor: pointer;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
   }

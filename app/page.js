@@ -2,13 +2,16 @@
 
 import { useEffect, useState } from "react";
 import axios from "axios";
-import styles from '@/app/page.module.css';
 import Head from 'next/head';
 import Image from 'next/image';
+import { SignedIn, SignedOut, UserButton, useAuth } from "@clerk/nextjs";
+import { useRouter } from 'next/navigation';
+import styles from '@/app/page.module.css';
 
 
 export default function Home() {
-  const [userId, setUserId] = useState("alden");
+  const { isSignedIn, userId } = useAuth();
+  const router = useRouter();
 
   const [numDevices, setNumDevices] = useState(0);
   const [totalWatts, setTotalWatts] = useState(0);
@@ -17,14 +20,20 @@ export default function Home() {
   const [schedule, setSchedule] = useState([]);
 
   useEffect(() => {
-    getUserData(userId)
-  }, [userId])
+    if (isSignedIn) {
+      getUserData(userId);
+    }
+  }, [isSignedIn, userId])
 
   const getUserData = async (userId) => {
     try{
       const response = await axios.get("/api/userData", {
         params: { user: userId }
       })
+
+      if (!response.data.exists) {
+        createUserData(userId); // Call create only if user data doesn't exist
+      }
 
       setNumDevices(response.data.data.devices)
     } catch (error) {
@@ -85,6 +94,15 @@ export default function Home() {
     });
   }
 
+  const handleGetStarted = async () => {
+    if (!isSignedIn) {
+      router.push("/sign-in");
+      return;
+    } else {
+      router.push("/dashboard");
+    }
+  }
+
   return (
 
     
@@ -104,16 +122,26 @@ export default function Home() {
             <Image width={50} height={50} src="/logo.png" alt="EcoSense Logo" className={styles.logoImage} />
             <a href="/" className={styles.logoText}>EcoSense</a>
           </div>
-          <ul className={styles.navLink}>
-            
-            <li><a href="about">About</a></li>
-            <li><a href="contact">Contact</a></li>
-            
-          </ul>
-          <div className={styles.authButtons}>
-            <a href="login" className={styles.loginButton}>Login</a>
-            <a href="register" className={styles.registerButton}>Register</a>
-          </div>
+
+          <SignedOut>
+            <div className={styles.authButtons}>
+              <a href="/sign-in" className={styles.loginButton}>Login</a>
+              <a href="/sign-up" className={styles.registerButton}>Register</a>
+            </div>
+          </SignedOut>
+
+          <SignedIn>
+            <UserButton appearance={
+                  {
+                    elements: {
+                      userButtonAvatarBox: {
+                        width: 45,
+                        height: 45,
+                      },
+                    }
+                  }
+                }/>
+          </SignedIn>
         </nav>
       </header>
 
@@ -121,8 +149,8 @@ export default function Home() {
       <section className={styles.hero}>
         <div className={styles.heroContent}>
           <h1>Welcome to EcoSense</h1>
-          <p>Discover the best cost-efficient solutions for your home today!</p>
-          <a href="#cta" className={styles.ctaButton}>Get Started!</a>
+          <p>Discover the best cost-efficient solutions for your home</p>
+          <button onClick={handleGetStarted} className={styles.ctaButton}>Get Started!</button>
         </div>
       </section>
 

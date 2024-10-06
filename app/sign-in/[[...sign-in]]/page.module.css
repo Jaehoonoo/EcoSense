@@ -1,0 +1,8 @@
+.container {
+  height: 100vh;
+  background: url('/assets/landing.jpg') no-repeat center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
