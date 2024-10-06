@@ -1,0 +1,84 @@
+.container {
+    display: flex;
+    align-items: flex-start;
+    
+
+}
+
+.content {
+    flex: 4;
+    padding: 20px;
+    margin-left: 0;
+    
+}
+
+@media screen and (min-width: 1200px) {
+    .content {
+        margin-left: 312px;
+    }
+}
+
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh; /* Full page height */
+    background-color: #f0f0f0; /* Light background */
+}
+
+.main {
+    display: flex;
+    gap: 3rem; /* Space between cards */
+}
+
+.cards {
+    display:block;
+    padding:2rem;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    background-color: #80ed99;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+    width: 150px; /* Adjust width of cards */
+    height: 150px; /* Adjust height of cards */
+}
+
+.cards h1 {
+    font-size: 24px;
+    margin: 0;
+}
+
+.cards p {
+    font-size: 14px;
+    color: gray;
+    text-align: center;
+}
+
+.chart {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%; 
+    max-width: 400px; 
+    
+    
+}
+
+.imageSection {
+    margin-top: 2rem; 
+    display: flex;
+    justify-content: center;
+    width: 50%; 
+}
+
+.graphImage {
+    max-width: 70%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
