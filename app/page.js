@@ -19,6 +19,11 @@ export default function Home() {
   const [threshold, setThreshold] = useState(0);
   const [schedule, setSchedule] = useState([]);
 
+  const [deviceStatus, setDeviceStatus] = useState("Off");
+  const [message, setMessage] = useState("");
+
+  const date = new Date().toLocaleString() // Set a valid timestamp;
+
   useEffect(() => {
     if (isSignedIn) {
       getUserData(userId);
@@ -103,6 +108,71 @@ export default function Home() {
     }
   }
 
+  const toggleDevice = async () => {
+    const newStatus = deviceStatus === "On" ? "Off" : "On";
+    setDeviceStatus(newStatus);
+
+    try {
+      const response = await axios.post("/api/devices", {
+        deviceStatus: newStatus,
+        appliance: "lights", // change to dependent appliances
+        timestamp: date
+      })
+
+      
+      console.log(response.data); // Output the message from the backend
+
+      // if (response.data.success) {
+      //   // Set the AI-generated message from the backend
+      //   setMessage(response.data.message);
+      // } else {
+      //   setMessage("No suggestion available");
+      // }
+
+    } catch (error) {
+      console.error("Error toggling power: ", error);
+      return {
+        success: false,
+        message: "Failed to toggle power",
+        status: 500
+      };  
+    }
+  }
+
+  const checkPattern = async () => {
+    const newStatus = deviceStatus === "On" ? "Off" : "On";
+    setDeviceStatus(newStatus);
+
+    try {
+      const response = await axios.get("/api/checkPattern", {
+        deviceStatus: newStatus,
+        appliance: "lights", // change to dependent appliances
+        timestamp: date
+      })
+
+      if (response.data.success) {
+        // Set the AI-generated message from the backend
+        setMessage(response.data.message);
+      } else {
+        setMessage("No suggestion available");
+      }
+
+      console.log(message);
+    } catch (error) {
+      console.error("Error checking pattern: ", error);
+      return {
+        success: false,
+        message: "Failed to check pattern",
+        status: 500
+      };
+    }
+  }
+  const handleVector = () => {
+    toggleDevice();
+    checkPattern();
+  }
+
+
   return (
 
     
@@ -164,6 +234,14 @@ export default function Home() {
       <button onClick={addDevice}>
         Add device
       </button>
+
+      <div>
+        <h4>On/Off: {deviceStatus}</h4>
+        <button onClick={toggleDevice}>
+          Toggle Power
+        </button>
+      </div>
+
     </div>
   );
 };
