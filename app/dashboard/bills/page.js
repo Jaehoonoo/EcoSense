@@ -1,3 +1,5 @@
+"use client"; // Marking this component as a Client Component
+
 import { useState } from 'react';
 
 export default function Bills() {
@@ -25,12 +27,13 @@ export default function Bills() {
             }
         });
         const cost = totalEnergy * parseFloat(rate);
-        setTotalCost(cost);
+        const monthlyCost = cost * 30; // Assuming 30 days in a month
+        setTotalCost(monthlyCost);
     };
 
     return (
         <div style={{ padding: '20px' }}>
-            <h1>Calculate Energy Bills</h1>
+            <h1>Calculate Monthly Energy Bills</h1>
             {devices.map((device, index) => (
                 <div key={index} style={{ marginBottom: '10px' }}>
                     <input
@@ -44,9 +47,11 @@ export default function Bills() {
                     <input
                         type="number"
                         name="hours"
-                        placeholder="Hours Used"
+                        placeholder="Hours Used Per Day"
                         value={device.hours}
                         onChange={event => handleDeviceChange(index, event)}
+                        min="0"
+                        max="24"
                         style={{ marginRight: '10px' }}
                     />
                 </div>
@@ -66,7 +71,7 @@ export default function Bills() {
             <button onClick={calculateCost} style={{ marginBottom: '20px' }}>
                 Calculate Cost
             </button>
-            <h2>Total Cost: ${totalCost.toFixed(2)}</h2>
+            <h2>Total Monthly Cost: ${totalCost.toFixed(2)}</h2>
         </div>
     );
 }
