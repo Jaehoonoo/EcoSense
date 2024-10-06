@@ -24,8 +24,9 @@
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
-    min-height: 60vh; /* Full page height */
-    background-color: #f0f0f0; /* Light background */
+    min-height: 60vh; 
+    background-color: #38a3a5; 
+    border-radius: 20px;
 }
 
 .main {
@@ -40,22 +41,31 @@
     text-align: center;
     align-items: center;
     background-color: #80ed99;
-    border-radius: 20px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+    border-radius: 100px;
+    
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
     width: 150px; /* Adjust width of cards */
     height: 150px; /* Adjust height of cards */
 }
 
+.cards:hover {
+    transform: translateY(-10px); 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+
 .cards h1 {
     font-size: 24px;
     margin: 0;
+    color: #364a42;
 }
 
 .cards p {
     font-size: 14px;
-    color: gray;
+    color: #364a42;
     text-align: center;
+    align-content: center;
+    
 }
 
 .chart {
@@ -70,16 +80,5 @@
     
 }
 
-.imageSection {
-    margin-top: 2rem; 
-    display: flex;
-    justify-content: center;
-    width: 50%; 
-}
 
-.graphImage {
-    max-width: 70%;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-}
+

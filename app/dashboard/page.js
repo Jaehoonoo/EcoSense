@@ -4,28 +4,10 @@ import React from 'react';
 import { Line } from 'react-chartjs-2';
 
 
-import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend,
-} from 'chart.js';
-
-ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend
-);
 
 export default function Dashboard(){
+
+    
 
     return(
 
@@ -34,20 +16,20 @@ export default function Dashboard(){
         <div className={styles.main}>
             {/* First Card: Large Money Value */}
             <div className={styles.cards}>
-                    <h1>$1000</h1>
-                    <p>Estimated $/kwh</p>
+                    <h1>$0.14</h1>
+                    <p>Estimated $/kWh</p>
                 </div>
 
                 {/* Second Card: Smaller Money Value */}
                 <div className={styles.cards}>
-                    <h1>$200</h1>
+                    <h1>$129</h1>
                     <p>Money Saved</p>
                 </div>
 
                 {/* Third Card: Temperature */}
                 <div className={styles.cards}>
                     <h1>77°F</h1>
-                    <p>Current Temperature</p>
+                    <p>Indoor Thermostat</p>
                 </div>
 
             
